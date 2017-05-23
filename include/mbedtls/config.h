@@ -781,7 +781,7 @@
  *
  * Enable functions that use the filesystem.
  */
-#define MBEDTLS_FS_IO
+//#define MBEDTLS_FS_IO
 
 /**
  * \def MBEDTLS_NO_DEFAULT_ENTROPY_SOURCES
@@ -922,7 +922,7 @@
  *
  * Enable the checkup functions (*_self_test).
  */
-#define MBEDTLS_SELF_TEST
+//#define MBEDTLS_SELF_TEST
 
 /**
  * \def MBEDTLS_SHA256_SMALLER
@@ -1021,7 +1021,7 @@
  *
  * Comment this macro to disable support for FALLBACK_SCSV
  */
-#define MBEDTLS_SSL_FALLBACK_SCSV
+//#define MBEDTLS_SSL_FALLBACK_SCSV
 
 /**
  * \def MBEDTLS_SSL_HW_RECORD_ACCEL
@@ -1043,7 +1043,7 @@
  *
  * Comment this macro to disable 1/n-1 record splitting.
  */
-#define MBEDTLS_SSL_CBC_RECORD_SPLITTING
+//#define MBEDTLS_SSL_CBC_RECORD_SPLITTING
 
 /**
  * \def MBEDTLS_SSL_RENEGOTIATION
@@ -1111,7 +1111,7 @@
  *
  * Comment this macro to disable support for TLS 1.0
  */
-#define MBEDTLS_SSL_PROTO_TLS1
+//#define MBEDTLS_SSL_PROTO_TLS1
 
 /**
  * \def MBEDTLS_SSL_PROTO_TLS1_1
@@ -1123,7 +1123,7 @@
  *
  * Comment this macro to disable support for TLS 1.1 / DTLS 1.0
  */
-#define MBEDTLS_SSL_PROTO_TLS1_1
+//#define MBEDTLS_SSL_PROTO_TLS1_1
 
 /**
  * \def MBEDTLS_SSL_PROTO_TLS1_2

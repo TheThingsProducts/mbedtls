@@ -1099,6 +1099,7 @@ int mbedtls_x509_crt_parse_file( mbedtls_x509_crt *chain, const char *path )
     return( ret );
 }
 
+#if !defined(__PIC32MZ)
 int mbedtls_x509_crt_parse_path( mbedtls_x509_crt *chain, const char *path )
 {
     int ret = 0;
@@ -1218,6 +1219,7 @@ cleanup:
     return( ret );
 }
 #endif /* MBEDTLS_FS_IO */
+#endif /* __PIC32MZ */
 
 static int x509_info_subject_alt_name( char **buf, size_t *size,
                                        const mbedtls_x509_sequence *subject_alt_name )

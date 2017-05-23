@@ -39,7 +39,7 @@
 #if !defined(MBEDTLS_TIMING_ALT)
 
 #if !defined(unix) && !defined(__unix__) && !defined(__unix) && \
-    !defined(__APPLE__) && !defined(_WIN32)
+    !defined(__APPLE__) && !defined(_WIN32) && !defined(__PIC32MZ)
 #error "This module only works on Unix and Windows, see MBEDTLS_TIMING_C in config.h"
 #endif
 
@@ -71,6 +71,20 @@ struct _hr_time
 };
 
 #endif /* _WIN32 && !EFIX64 && !EFI32 */
+
+/* PIC32MZ Core Counter */
+#if !defined(HAVE_HARDCLOCK) && defined(MBEDTLS_HAVE_ASM) &&  \
+    defined(__GNUC__) && ( defined(__PIC32MZ)  )
+
+#define HAVE_HARDCLOCK
+
+unsigned long mbedtls_timing_hardclock( void )
+{
+    unsigned int timer;    
+    asm volatile("mfc0   %0, $9" : "=r"(timer));
+    return ( timer );        
+}
+#endif /* PIC32MZ Core Counter */
 
 #if !defined(HAVE_HARDCLOCK) && defined(MBEDTLS_HAVE_ASM) &&  \
     ( defined(_MSC_VER) && defined(_M_IX86) ) || defined(__WATCOMC__)

@@ -44,7 +44,7 @@
 #if !defined(MBEDTLS_NO_PLATFORM_ENTROPY)
 
 #if !defined(unix) && !defined(__unix__) && !defined(__unix) && \
-    !defined(__APPLE__) && !defined(_WIN32)
+    !defined(__APPLE__) && !defined(_WIN32) && !defined(__PIC32MZ)
 #error "Platform entropy sources only work on Unix and Windows, see MBEDTLS_NO_PLATFORM_ENTROPY in config.h"
 #endif
 
@@ -170,6 +170,11 @@ int mbedtls_platform_entropy_poll( void *data,
     }
 #endif /* HAVE_GETRANDOM */
 
+#if defined(__PIC32MZ)
+    *olen = len;
+    for(;len;len--)
+        *output++ = (unsigned char)SYS_RANDOM_PseudoGet();
+#else    
     *olen = 0;
 
     file = fopen( "/dev/urandom", "rb" );
@@ -185,7 +190,7 @@ int mbedtls_platform_entropy_poll( void *data,
 
     fclose( file );
     *olen = len;
-
+#endif
     return( 0 );
 }
 #endif /* _WIN32 && !EFIX64 && !EFI32 */
